@@ -16,6 +16,8 @@ describe('OrangeHRM Login Test', () => {
       dateField: "[placeholder='yyyy-dd-mm']",
       dateCloseButton: ".--close",
       saveButton: "[type='submit']",
+      selectArrows: ".oxd-select-text--arrow",
+      genderRadioSelector: ".oxd-radio-wrapper",
 
     }
 
@@ -35,10 +37,14 @@ describe('OrangeHRM Login Test', () => {
     cy.get(selectorsList.genericField).eq(5).clear().type('DriversLicenseTest')
     cy.get(selectorsList.genericField).eq(6).clear().type('2026-03-17')
     cy.get(selectorsList.dateCloseButton).click()
+    cy.get(selectorsList.selectArrows).eq(0).click()
+    cy.get(':nth-child(36)').click()
+    cy.get(selectorsList.selectArrows).eq(1).click()
+    cy.get('.oxd-select-dropdown > :nth-child(3)').click()
+    cy.get(selectorsList.genderRadioSelector).eq(0).click()
     cy.get(selectorsList.saveButton).eq(0).click()
     cy.get('.oxd-toast-close')
-
-    
+   
   })
   it('Login - Fail', () => {
 
