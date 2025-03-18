@@ -19,11 +19,10 @@ describe('OrangeHRM Login Test', () => {
 
     menuPage.accessMyInfoMenu()
 
-    myInfoPage.typeFieldsTest()
-
-    myInfoPage.clickFieldsTest()
-
-    myInfoPage.saveInfoCheck()
+    myInfoPage.fillpersonalDetails('FirstNameTest', 'LastNameTest')
+    myInfoPage.fillemployeeDetails('EmplooyeId', 'OtherIdTest', 'DriversLicenseTest', '2026-17-03')
+    myInfoPage.fillemployeeStatus('1996-11-02')
+    myInfoPage.sendForm()
      
   })
   it('Login - Fail', () => {
