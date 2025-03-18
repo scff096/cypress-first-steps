@@ -1,35 +1,34 @@
 import userData from '../fixtures/users/user-data.json'
+import LoginPage from '../pages/loginPage.js'
+import DashboardPage from '../pages/dashboardPage.js'
+import MenuPage from '../pages/menuPage.js'
+
+const loginPage = new LoginPage()
+const dashboardPage = new DashboardPage()
+const menuPage = new MenuPage()
 
 describe('OrangeHRM Login Test', () => {
 
-    const selectorsList = {
-      usernameField: "[name='username']",
-      passwordField: "[name='password']",
-      loginButton: "[type='submit']",
-      sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
-      dashboardGrid: ".orangehrm-dashboard-grid",
-      wrongCredentialAlert: "[role='alert']",
-      myInfoButton: "[href='/web/index.php/pim/viewMyDetails'] .oxd-text--span",
-      firstNameField: "[name='firstName']",
-      lastNameField: "[name='lastName']",
-      genericField: ".oxd-input--active",
-      dateField: "[placeholder='yyyy-dd-mm']",
-      dateCloseButton: ".--close",
-      saveButton: "[type='submit']",
-      selectArrows: ".oxd-select-text--arrow",
-      genderRadioSelector: ".oxd-radio-wrapper",
+    const selectorsList = {      
 
+        firstNameField: "[name='firstName']",
+        lastNameField: "[name='lastName']",
+        genericField: ".oxd-input--active",
+        dateField: "[placeholder='yyyy-dd-mm']",
+        dateCloseButton: ".--close",
+        saveButton: "[type='submit']",
+        selectArrows: ".oxd-select-text--arrow",
+        genderRadioSelector: ".oxd-radio-wrapper",
     }
 
   it.only('User Info Update - Success', () => {
+    loginPage.accessLoginPage()
+    loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
 
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userSuccess.username)
-    cy.get(selectorsList.passwordField).type(userData.userSuccess.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorsList.dashboardGrid)
-    cy.get(selectorsList.myInfoButton).click()
+    dashboardPage.dashboardPageCheck()
+
+    menuPage.accessMyInfoMenu()
+    
     cy.get(selectorsList.firstNameField).clear().type('FirstNameTest')
     cy.get(selectorsList.lastNameField).clear().type('LastNameTest')
     cy.get(selectorsList.genericField).eq(3).clear().type('EmplooyeId')
