@@ -11,7 +11,7 @@ const myInfoPage = new MyInfoPage()
 
 describe('OrangeHRM Login Test', () => {
 
-  it.only('User Info Update - Success', () => {
+  it('User Info Update - Success', () => {
     loginPage.accessLoginPage()
     loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
 
@@ -19,7 +19,7 @@ describe('OrangeHRM Login Test', () => {
 
     menuPage.accessMyInfoMenu()
 
-    myInfoPage.fillpersonalDetails('FirstNameTest', 'LastNameTest')
+    myInfoPage.fillpersonalDetails('FirstNameTest', 'LastNameTest')//,'nickName'
     myInfoPage.fillemployeeDetails('EmplooyeId', 'OtherIdTest', 'DriversLicenseTest', '2026-17-03')
     myInfoPage.fillemployeeStatus('1996-11-02')
     myInfoPage.sendForm()
