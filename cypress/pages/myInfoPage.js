@@ -12,7 +12,7 @@ class MyInfoPage {
             martialStatusSelected: ".oxd-select-dropdown > :nth-child(4)",
             genderRadioSelector: ".oxd-radio-wrapper",
             saveButton: "[type='submit']",
-            saveCloseButton: ".oxd-toast-close"
+            saveCloseButton: ".oxd-toast-container--bottom"
         }
 
         return selectors
